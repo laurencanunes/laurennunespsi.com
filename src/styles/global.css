@@ -1,0 +1,12 @@
+/*
+ * Global styles.
+ *
+ * TODO: import brand fonts here (Google Fonts or self-hosted), e.g.:
+ *   @import url('https://fonts.googleapis.com/css2?family=...&display=swap');
+ * or, for self-hosted fonts, add @font-face rules and drop the files in /public/fonts.
+ * After importing, update `fontFamily` in tailwind.config.mjs to reference them.
+ */
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;

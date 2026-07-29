@@ -1,0 +1,76 @@
+---
+import { getCollection } from 'astro:content';
+import BaseLayout from '../layouts/BaseLayout.astro';
+
+const posts = (await getCollection('blog', ({ data }) => !data.draft))
+  .sort((a, b) => b.data.pubDate.getTime() - a.data.pubDate.getTime())
+  .slice(0, 3);
+
+const dateFormat = new Intl.DateTimeFormat('pt-BR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout>
+  <!-- Hero — PLACEHOLDER copy -->
+  <section class="py-12 text-center">
+    <img
+      src="/logo.png"
+      alt="Logo de Lauren Nunes · Psicóloga"
+      class="mx-auto mb-8 w-56 max-w-full"
+    />
+    <h1 class="font-heading text-4xl font-bold text-brand-dark">
+      Headline placeholder
+    </h1>
+    <p class="mx-auto mt-4 max-w-xl text-lg text-brand-dark/70">
+      Subheadline placeholder — uma frase curta descrevendo o serviço e o
+      acolhimento oferecido.
+    </p>
+    <a
+      href="/about"
+      class="mt-8 inline-block rounded-full bg-brand-primary px-6 py-3 font-semibold text-white hover:bg-brand-primary/90"
+    >
+      Call to action
+    </a>
+  </section>
+
+  <!-- Latest posts preview -->
+  <section class="border-t border-brand-dark/10 py-12">
+    <div class="mb-6 flex items-baseline justify-between">
+      <h2 class="font-heading text-2xl font-bold text-brand-dark">
+        Últimos posts
+      </h2>
+      <a href="/blog" class="text-sm text-brand-primary hover:underline">
+        Ver todos
+      </a>
+    </div>
+
+    {
+      posts.length === 0 ? (
+        <p class="text-brand-dark/60">Nenhum post publicado ainda.</p>
+      ) : (
+        <ul class="space-y-6">
+          {posts.map((post) => (
+            <li>
+              <article>
+                <h3 class="text-xl font-semibold">
+                  <a href={`/blog/${post.slug}`} class="hover:text-brand-primary">
+                    {post.data.title}
+                  </a>
+                </h3>
+                <p class="mt-1 text-sm text-brand-dark/60">
+                  <time datetime={post.data.pubDate.toISOString()}>
+                    {dateFormat.format(post.data.pubDate)}
+                  </time>
+                </p>
+                <p class="mt-2 text-brand-dark/80">{post.data.description}</p>
+              </article>
+            </li>
+          ))}
+        </ul>
+      )
+    }
+  </section>
+</BaseLayout>

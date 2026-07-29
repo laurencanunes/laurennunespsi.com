@@ -1,0 +1,57 @@
+---
+import type { CollectionEntry } from 'astro:content';
+import BaseLayout from './BaseLayout.astro';
+
+interface Props {
+  post: CollectionEntry<'blog'>;
+}
+
+const { post } = Astro.props;
+const { title, description, pubDate, updatedDate, tags } = post.data;
+
+const dateFormat = new Intl.DateTimeFormat('pt-BR', {
+  year: 'numeric',
+  month: 'long',
+  day: 'numeric',
+});
+---
+
+<BaseLayout title={`${title} · Lauren Nunes`} description={description}>
+  <article class="prose-custom">
+    <header class="mb-8">
+      <h1 class="font-heading text-3xl font-bold text-brand-dark">{title}</h1>
+      <p class="mt-2 text-sm text-brand-dark/60">
+        <time datetime={pubDate.toISOString()}>{dateFormat.format(pubDate)}</time>
+        {
+          updatedDate && (
+            <span>
+              {' '}· atualizado em{' '}
+              <time datetime={updatedDate.toISOString()}>
+                {dateFormat.format(updatedDate)}
+              </time>
+            </span>
+          )
+        }
+      </p>
+      {
+        tags && tags.length > 0 && (
+          <ul class="mt-3 flex flex-wrap gap-2" aria-label="Tags">
+            {tags.map((tag) => (
+              <li class="rounded-full bg-brand-primary/10 px-3 py-1 text-xs font-medium text-brand-primary">
+                {tag}
+              </li>
+            ))}
+          </ul>
+        )
+      }
+    </header>
+
+    <div class="space-y-4 leading-relaxed">
+      <slot />
+    </div>
+
+    <footer class="mt-10 border-t border-brand-dark/10 pt-6">
+      <a href="/blog" class="text-brand-primary hover:underline">&larr; Voltar para o blog</a>
+    </footer>
+  </article>
+</BaseLayout>
