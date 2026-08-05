@@ -68,6 +68,12 @@ export default {
       screens: {
         nav: '900px',
       },
+
+      // Landing-page content column. Section backgrounds stay full-bleed;
+      // their contents are centred and capped at this width.
+      maxWidth: {
+        content: '1280px',
+      },
     },
   },
   plugins: [],

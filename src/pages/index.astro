@@ -149,10 +149,8 @@ const sectionTitle =
 
 <BaseLayout wide schema={schema}>
   <!-- Hero -->
-  <section
-    id="top"
-    class="grid grid-cols-1 items-center gap-14 px-6 pb-16 pt-16 md:px-11 lg:grid-cols-2 lg:pt-20"
-  >
+  <section id="top" class="px-6 pb-16 pt-16 md:px-11 lg:pt-20">
+   <div class="mx-auto grid max-w-content grid-cols-1 items-center gap-14 lg:grid-cols-2">
     <div>
       <p class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-eyebrow">
         Psicoterapia online
@@ -203,24 +201,25 @@ const sectionTitle =
         </span>
       </div>
     </div>
+   </div>
   </section>
 
   <!-- Credentials strip -->
-  <ul
-    class="grid grid-cols-1 gap-px border-y border-brand-line bg-brand-line sm:grid-cols-2 lg:grid-cols-4"
-  >
-    {
-      credentials.map((item) => (
-        <li class="bg-white px-8 py-6 text-sm font-medium text-brand-subtle">{item}</li>
-      ))
-    }
-  </ul>
+  <div class="border-y border-brand-line">
+    <ul
+      class="mx-auto grid max-w-content grid-cols-1 gap-px bg-brand-line sm:grid-cols-2 lg:grid-cols-4"
+    >
+      {
+        credentials.map((item) => (
+          <li class="bg-white px-8 py-6 text-sm font-medium text-brand-subtle">{item}</li>
+        ))
+      }
+    </ul>
+  </div>
 
   <!-- Sobre -->
-  <section
-    id="sobre"
-    class="grid scroll-mt-20 grid-cols-1 items-start gap-14 border-t border-brand-line px-6 py-20 md:px-11 lg:grid-cols-2"
-  >
+  <section id="sobre" class="scroll-mt-20 border-t border-brand-line px-6 py-20 md:px-11">
+   <div class="mx-auto grid max-w-content grid-cols-1 items-start gap-14 lg:grid-cols-2">
     <!-- TODO: swap for a real photo of the workspace (900×700). -->
     <div
       class="flex h-[340px] items-center justify-center rounded-3xl bg-photo-placeholder"
@@ -254,10 +253,12 @@ const sectionTitle =
         Ler minha trajetória completa →
       </a>
     </div>
+   </div>
   </section>
 
   <!-- Demandas -->
   <section id="demandas" class="scroll-mt-20 bg-brand-light px-6 py-20 md:px-11">
+   <div class="mx-auto max-w-content">
     <div class="mb-11 max-w-[640px]">
       <p class={`mb-3.5 ${eyebrow}`}>Demandas</p>
       <h2 class={`mb-3.5 ${sectionTitle}`}>Para o que as pessoas me procuram</h2>
@@ -281,10 +282,12 @@ const sectionTitle =
         ))
       }
     </div>
+   </div>
   </section>
 
   <!-- Como funciona -->
   <section id="como-funciona" class="scroll-mt-20 px-6 py-20 md:px-11">
+   <div class="mx-auto max-w-content">
     <div class="mb-11 max-w-[640px]">
       <p class={`mb-3.5 ${eyebrow}`}>Como funciona</p>
       <h2 class={`mb-3.5 ${sectionTitle}`}>Quatro passos até a primeira sessão</h2>
@@ -307,6 +310,7 @@ const sectionTitle =
         ))
       }
     </ol>
+   </div>
   </section>
 
   <!-- Abordagem -->
@@ -314,7 +318,7 @@ const sectionTitle =
     id="abordagem"
     class="scroll-mt-20 bg-brand-dark px-6 py-20 text-brand-on-dark md:px-11"
   >
-    <div class="grid grid-cols-1 items-start gap-12 lg:grid-cols-2">
+    <div class="mx-auto grid max-w-content grid-cols-1 items-start gap-12 lg:grid-cols-2">
       <div>
         <p class="mb-3.5 text-xs font-semibold uppercase tracking-[0.18em] text-brand-on-dark-accent">
           Abordagem
@@ -347,6 +351,7 @@ const sectionTitle =
 
   <!-- Avaliações -->
   <section id="avaliacoes" class="scroll-mt-20 bg-brand-light px-6 py-20 md:px-11">
+   <div class="mx-auto max-w-content">
     <div class="mb-9 flex flex-wrap items-end justify-between gap-6">
       <div>
         <p class={`mb-3.5 ${eyebrow}`}>Avaliações</p>
@@ -377,12 +382,14 @@ const sectionTitle =
         ))
       }
     </div>
+   </div>
   </section>
 
   <!-- Blog -->
   {
     posts.length > 0 && (
       <section id="blog" class="scroll-mt-20 px-6 py-20 md:px-11">
+       <div class="mx-auto max-w-content">
         <div class="mb-8 flex flex-wrap items-end justify-between gap-6">
           <div>
             <p class={`mb-3.5 ${eyebrow}`}>Blog</p>
@@ -419,15 +426,14 @@ const sectionTitle =
             </a>
           ))}
         </div>
+       </div>
       </section>
     )
   }
 
   <!-- FAQ -->
-  <section
-    id="faq"
-    class="grid scroll-mt-20 grid-cols-1 items-start gap-12 bg-brand-light px-6 py-20 md:px-11 lg:grid-cols-2"
-  >
+  <section id="faq" class="scroll-mt-20 bg-brand-light px-6 py-20 md:px-11">
+   <div class="mx-auto grid max-w-content grid-cols-1 items-start gap-12 lg:grid-cols-2">
     <div class="lg:sticky lg:top-6">
       <p class={`mb-3.5 ${eyebrow}`}>FAQ</p>
       <h2 class={`mb-3.5 ${sectionTitle}`}>Perguntas frequentes</h2>
@@ -453,11 +459,14 @@ const sectionTitle =
         ))
       }
     </div>
+   </div>
   </section>
 
   <!-- Contato -->
   <section id="contato" class="scroll-mt-20 bg-brand-light px-6 pb-20 md:px-11">
-    <div class="relative overflow-hidden rounded-[28px] bg-brand-accent px-8 py-16 text-center">
+    <div
+      class="relative mx-auto max-w-content overflow-hidden rounded-[28px] bg-brand-accent px-8 py-16 text-center"
+    >
       <div
         aria-hidden="true"
         class="absolute -bottom-14 -left-10 h-[220px] w-[220px] rounded-full bg-white/10"
