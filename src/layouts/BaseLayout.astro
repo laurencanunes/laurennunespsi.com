@@ -1,7 +1,7 @@
 ---
 import { Image } from 'astro:assets';
 import '../styles/global.css';
-import logo from '../assets/logo.png';
+import logo from '../assets/logo-dra-lauren.png';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import {
   CRP,
@@ -53,8 +53,9 @@ const footerNav = [
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="generator" content={Astro.generator} />
-    <!-- TODO: replace with a real favicon in /public (e.g. favicon.svg / favicon.ico) -->
-    <link rel="icon" type="image/png" href="/logo.png" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.svg" />
+    <link rel="icon" type="image/png" href="/favicon-32.png" />
+    <link rel="apple-touch-icon" href="/apple-touch-icon.png" />
     <title>{title}</title>
     <meta name="description" content={description} />
     <link rel="canonical" href={canonical} />
