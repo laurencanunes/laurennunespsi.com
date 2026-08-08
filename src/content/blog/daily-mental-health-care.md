@@ -1,5 +1,6 @@
 ---
 title: 'Como cuidar da saúde mental no dia a dia'
+slug: como-cuidar-da-saude-mental-no-dia-a-dia
 description: 'Segundo post de exemplo com dicas simples e placeholders para o conteúdo real.'
 pubDate: 2026-07-27
 updatedDate: 2026-07-28

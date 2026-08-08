@@ -1,5 +1,6 @@
 ---
 title: 'Bem-vindo ao blog'
+slug: bem-vindo-ao-blog
 description: 'Primeiro post de exemplo — um espaço para reflexões sobre saúde mental e bem-estar.'
 pubDate: 2026-07-20
 tags: ['bem-estar', 'saúde mental']

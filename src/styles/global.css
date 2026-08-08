@@ -8,3 +8,34 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+@layer components {
+  /* Typography for Markdown bodies (blog posts and content pages). */
+  .prose-custom :where(h2) {
+    @apply mt-8 font-heading text-2xl font-semibold text-brand-dark;
+  }
+
+  .prose-custom :where(h3) {
+    @apply mt-6 font-heading text-xl font-semibold text-brand-dark;
+  }
+
+  .prose-custom :where(p) {
+    @apply mt-4 leading-relaxed text-brand-dark/80;
+  }
+
+  .prose-custom :where(ul) {
+    @apply mt-4 list-disc space-y-1 pl-6 text-brand-dark/80;
+  }
+
+  .prose-custom :where(ol) {
+    @apply mt-4 list-decimal space-y-1 pl-6 text-brand-dark/80;
+  }
+
+  .prose-custom :where(a) {
+    @apply text-brand-primary hover:underline;
+  }
+
+  .prose-custom :where(strong) {
+    @apply font-semibold text-brand-dark;
+  }
+}
