@@ -96,9 +96,3 @@ Deployment is fully automated via GitHub Actions:
 - Every push to `main` triggers `.github/workflows/deploy.yml`.
 - The workflow builds the site with `withastro/action` and publishes it to
   GitHub Pages via `actions/deploy-pages`.
-
-**One-time setup:** in the repo, go to **Settings → Pages → Build and deployment**
-and set **Source: GitHub Actions**.
-
-The custom domain `laurennunespsi.com` is configured via `public/CNAME`, which is
-copied into the build output on every deploy.
