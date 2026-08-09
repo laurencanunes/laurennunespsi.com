@@ -2,8 +2,10 @@
  * Global styles.
  *
  * Poppins is the brand typeface; `fontFamily` in tailwind.config.mjs points at it.
+ * It is loaded by a <link> in BaseLayout.astro rather than an @import here:
+ * `build.inlineStylesheets` concatenates the CSS chunks, which would push an
+ * @import past the first style rule, where browsers ignore it.
  */
-@import url('https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap');
 
 @tailwind base;
 @tailwind components;

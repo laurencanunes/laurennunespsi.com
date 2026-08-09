@@ -10,6 +10,12 @@ export default defineConfig({
   // Fully static build, deployed to GitHub Pages.
   output: 'static',
 
+  build: {
+    // Total CSS is well under 10KB, so inlining it into each page's <head>
+    // beats paying for extra render-blocking requests before first paint.
+    inlineStylesheets: 'always',
+  },
+
   integrations: [
     tailwind(),
   ],
