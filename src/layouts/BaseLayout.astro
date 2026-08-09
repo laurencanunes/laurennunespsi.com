@@ -7,6 +7,11 @@ import "@fontsource/poppins/latin-400.css";
 import "@fontsource/poppins/latin-500.css";
 import "@fontsource/poppins/latin-600.css";
 import "@fontsource/poppins/latin-700.css";
+// Preloaded below. Importing the files through Vite yields the same hashed URLs
+// the @font-face rules above resolve to, so the preload hits the same cache
+// entry instead of fetching a second copy.
+import poppins400 from "@fontsource/poppins/files/poppins-latin-400-normal.woff2?url";
+import poppins700 from "@fontsource/poppins/files/poppins-latin-700-normal.woff2?url";
 import "../styles/global.css";
 import logo from "../assets/logo-dra-lauren.png";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
@@ -78,6 +83,25 @@ const footerNav = [
       )
     }
     <meta name="twitter:card" content="summary_large_image" />
+    {/* Only the two weights that cover most above-the-fold text: 400 (body) and
+        700 (hero h1). 500/600 are nav and eyebrow text, small enough that the
+        swap is not worth taking priority from the hero image. `crossorigin` is
+        required even same-origin — fonts are fetched in CORS mode, and without
+        it the preload misses and the font downloads twice. */}
+    <link
+      rel="preload"
+      href={poppins400}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
+    <link
+      rel="preload"
+      href={poppins700}
+      as="font"
+      type="font/woff2"
+      crossorigin="anonymous"
+    />
     {
       schema && (
         <script
