@@ -1,8 +1,7 @@
 # laurennunespsi.com
 
-Personal/business site for Lauren Nunes (Psicóloga), built with
-[Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com) and a
-Markdown-based blog. Deployed for free on GitHub Pages.
+Website built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com) and a
+Markdown-based blog. Deployed for on GitHub Pages.
 
 The brand palette, typography, and other design tokens live in
 `tailwind.config.mjs` and are the single source of truth — components use the
