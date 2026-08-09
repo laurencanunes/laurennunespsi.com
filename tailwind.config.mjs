@@ -44,7 +44,8 @@ export default {
       },
 
       // -----------------------------------------------------------------------
-      // Font families. Poppins is imported in `src/styles/global.css`.
+      // Font families. Poppins is self-hosted via @fontsource, imported in
+      // `src/layouts/BaseLayout.astro` (weights 400/500/600/700, latin subset).
       // Usage: `font-sans` (body), `font-heading` (headings).
       // -----------------------------------------------------------------------
       fontFamily: {

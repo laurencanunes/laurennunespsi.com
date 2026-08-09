@@ -1,5 +1,12 @@
 ---
 import { Image } from "astro:assets";
+// Poppins, self-hosted. Only the `latin` subset is imported: it covers every
+// character the pt-BR copy uses, and `build.inlineStylesheets` puts this CSS in
+// every page's head, so the unused latin-ext/devanagari faces are not free.
+import "@fontsource/poppins/latin-400.css";
+import "@fontsource/poppins/latin-500.css";
+import "@fontsource/poppins/latin-600.css";
+import "@fontsource/poppins/latin-700.css";
 import "../styles/global.css";
 import logo from "../assets/logo-dra-lauren.png";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
@@ -71,16 +78,6 @@ const footerNav = [
       )
     }
     <meta name="twitter:card" content="summary_large_image" />
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link
-      rel="preconnect"
-      href="https://fonts.gstatic.com"
-      crossorigin="anonymous"
-    />
-    <link
-      rel="stylesheet"
-      href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap"
-    />
     {
       schema && (
         <script
