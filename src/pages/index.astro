@@ -1,6 +1,8 @@
 ---
 import { getCollection } from 'astro:content';
+import { Image } from 'astro:assets';
 import BaseLayout from '../layouts/BaseLayout.astro';
+import profile from '../assets/dra-lauren-nunes.png';
 import WhatsAppButton from '../components/WhatsAppButton.astro';
 import { GOOGLE_REVIEWS_URL, INSTAGRAM_URL, WHATSAPP_NUMBER } from '../consts';
 
@@ -184,22 +186,14 @@ const sectionTitle =
       <div class="absolute inset-0 rounded-3xl bg-brand-mint"></div>
       <div class="absolute -bottom-7 -left-7 h-[150px] w-[150px] rounded-[20px] bg-brand-card-yellow">
       </div>
-      <!--
-        TODO: drop the portrait at `src/assets/lauren-profile.png`, then replace this
-        placeholder with:
-          import profile from '../assets/lauren-profile.png';
-          <Image src={profile} alt="Lauren Nunes, psicóloga, sentada em um sofá"
-                 class="relative block h-[500px] w-full rounded-[18px] object-cover" />
-        The source file could not be pulled from the design project (over the 256 KiB
-        read limit), so the frame below stands in at the exact final dimensions.
-      -->
-      <div
-        class="relative flex h-[500px] w-full items-center justify-center rounded-[18px] bg-photo-placeholder"
-      >
-        <span class="font-mono text-[11px] text-brand-muted">
-          foto de perfil — 1080×1920 (pendente)
-        </span>
-      </div>
+      <Image
+        src={profile}
+        alt="Dra. Lauren Nunes, psicóloga."
+        width={1080}
+        format="webp"
+        quality={80}
+        class="relative block h-[500px] w-full rounded-[18px] object-cover"
+      />
     </div>
    </div>
   </section>
