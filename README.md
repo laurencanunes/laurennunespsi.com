@@ -10,12 +10,13 @@ Markdown-based blog. Deployed for free on GitHub Pages.
 
 ## Requirements
 
-- Node.js 18.20+, 20.3+, or 22+ (Astro requirement)
+- Node.js 22+ — the version is pinned in `.nvmrc`
 - npm
 
 ## Run locally
 
 ```bash
+nvm use      # picks up Node 22 from .nvmrc (nvm is optional but recommended)
 npm install
 npm run dev
 ```
