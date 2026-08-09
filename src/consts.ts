@@ -1,6 +1,6 @@
 /** Site-wide contact details and derived links. */
 
-export const SITE_URL = 'https://laurennunespsi.com.br';
+export const SITE_URL = 'https://laurennunespsi.com/';
 
 export const CRP = 'CRP 06/172464';
 
