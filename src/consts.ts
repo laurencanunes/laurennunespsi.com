@@ -16,5 +16,4 @@ export const WHATSAPP_URL = `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURICo
 export const INSTAGRAM_HANDLE = '@laurennunespsi';
 export const INSTAGRAM_URL = 'https://www.instagram.com/laurennunespsi/';
 
-/** TODO: point at the real Google Business profile. */
 export const GOOGLE_REVIEWS_URL = 'https://share.google/tV6vLHvMFLBiJjUnM';
