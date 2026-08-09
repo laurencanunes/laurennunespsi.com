@@ -36,6 +36,9 @@ jobs:
         uses: withastro/action@v4
         # withastro/action installs deps, runs `astro build`, and uploads the
         # `dist/` folder as a Pages artifact automatically.
+        with:
+          # Keep CI on the same major as .nvmrc / package.json engines.
+          node-version: 22
 
   deploy:
     needs: build
