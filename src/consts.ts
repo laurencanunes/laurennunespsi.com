@@ -17,4 +17,4 @@ export const INSTAGRAM_HANDLE = '@laurennunespsi';
 export const INSTAGRAM_URL = 'https://www.instagram.com/laurennunespsi/';
 
 /** TODO: point at the real Google Business profile. */
-export const GOOGLE_REVIEWS_URL = 'https://maps.google.com';
+export const GOOGLE_REVIEWS_URL = 'https://share.google/tV6vLHvMFLBiJjUnM';

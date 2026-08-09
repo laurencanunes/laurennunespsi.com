@@ -1,8 +1,8 @@
 ---
-import { Image } from 'astro:assets';
-import '../styles/global.css';
-import logo from '../assets/logo-dra-lauren.png';
-import WhatsAppButton from '../components/WhatsAppButton.astro';
+import { Image } from "astro:assets";
+import "../styles/global.css";
+import logo from "../assets/logo-dra-lauren.png";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
 import {
   CRP,
   INSTAGRAM_HANDLE,
@@ -10,7 +10,7 @@ import {
   SITE_URL,
   WHATSAPP_DISPLAY,
   WHATSAPP_URL,
-} from '../consts';
+} from "../consts";
 
 interface Props {
   title?: string;
@@ -23,8 +23,8 @@ interface Props {
 }
 
 const {
-  title = 'Psicóloga online em português | Lauren Nunes — CRP 06/172464',
-  description = 'Psicoterapia online com Lauren Nunes, psicóloga CRP 06/172464. Terapia comportamental e ABA para adultos, adolescentes e famílias, no Brasil e no exterior. Agende pelo WhatsApp.',
+  title = "Lauren Nunes Psicóloga · Terapia online",
+  description = "Psicoterapia online em português com Lauren Nunes, psicóloga CRP 06/172464. Terapia comportamental e ABA para adultos, adolescentes e famílias, no Brasil e no exterior. Agende pelo WhatsApp.",
   ogImage,
   wide = false,
   schema,
@@ -33,17 +33,17 @@ const {
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 
 const nav = [
-  { href: '/#sobre', label: 'Sobre' },
-  { href: '/#demandas', label: 'Demandas' },
-  { href: '/#como-funciona', label: 'Como funciona' },
+  { href: "/#sobre", label: "Sobre" },
+  { href: "/#demandas", label: "Demandas" },
+  { href: "/#como-funciona", label: "Como funciona" },
   // { href: '/blog', label: 'Blog' },
 ];
 
 const footerNav = [
-  { href: '/sobre', label: 'Sobre mim' },
-  { href: '/#demandas', label: 'Demandas' },
+  { href: "/sobre", label: "Sobre mim" },
+  { href: "/#demandas", label: "Demandas" },
   // { href: '/blog', label: 'Blog' },
-  { href: '/#faq', label: 'FAQ' },
+  { href: "/#faq", label: "FAQ" },
 ];
 ---
 
@@ -63,10 +63,18 @@ const footerNav = [
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
-    {ogImage && <meta property="og:image" content={new URL(ogImage, SITE_URL).href} />}
+    {
+      ogImage && (
+        <meta property="og:image" content={new URL(ogImage, SITE_URL).href} />
+      )
+    }
     <meta name="twitter:card" content="summary_large_image" />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin="anonymous" />
+    <link
+      rel="preconnect"
+      href="https://fonts.gstatic.com"
+      crossorigin="anonymous"
+    />
     {
       schema && (
         <script
@@ -77,31 +85,50 @@ const footerNav = [
       )
     }
   </head>
-  <body class="flex min-h-screen flex-col bg-white font-sans text-brand-dark antialiased">
+  <body
+    class="flex min-h-screen flex-col bg-white font-sans text-brand-dark antialiased"
+  >
     <header class="border-b border-brand-line bg-white px-6 py-4 md:px-11">
-      <div class="mx-auto flex max-w-content flex-wrap items-center justify-between gap-6">
-      <a href="/" class="flex items-center gap-3">
-        <Image src={logo} alt="Logotipo de Lauren Nunes, psicóloga" width={42} densities={[1, 2]} />
-        <span class="flex flex-col leading-tight">
-          <span class="font-heading text-lg font-semibold text-brand-dark">Lauren Nunes</span>
-          <span class="text-[10px] uppercase tracking-[0.14em] text-brand-muted">
-            Psicóloga · {CRP}
+      <div
+        class="mx-auto flex max-w-content flex-wrap items-center justify-between gap-6"
+      >
+        <a href="/" class="flex items-center gap-3">
+          <Image
+            src={logo}
+            alt="Logotipo de Lauren Nunes, psicóloga"
+            width={42}
+            densities={[1, 2]}
+          />
+          <span class="flex flex-col leading-tight">
+            <span class="font-heading text-lg font-semibold text-brand-dark"
+              >Lauren Nunes</span
+            >
+            <span
+              class="text-[10px] uppercase tracking-[0.14em] text-brand-muted"
+            >
+              Psicóloga · {CRP}
+            </span>
           </span>
-        </span>
-      </a>
+        </a>
 
-      <nav aria-label="Principal" class="flex flex-wrap items-center gap-6 text-sm font-medium">
-        <span class="hidden items-center gap-6 nav:flex">
-          {
-            nav.map((item) => (
-              <a href={item.href} class="text-brand-subtle hover:text-brand-primary-hover">
-                {item.label}
-              </a>
-            ))
-          }
-        </span>
-        <WhatsAppButton size="sm">Agendar pelo WhatsApp</WhatsAppButton>
-      </nav>
+        <nav
+          aria-label="Principal"
+          class="flex flex-wrap items-center gap-6 text-sm font-medium"
+        >
+          <span class="hidden items-center gap-6 nav:flex">
+            {
+              nav.map((item) => (
+                <a
+                  href={item.href}
+                  class="text-brand-subtle hover:text-brand-primary-hover"
+                >
+                  {item.label}
+                </a>
+              ))
+            }
+          </span>
+          <WhatsAppButton size="sm">Agendar pelo WhatsApp</WhatsAppButton>
+        </nav>
       </div>
     </header>
 
@@ -117,57 +144,75 @@ const footerNav = [
       )
     }
 
-    <footer class="border-t border-brand-line bg-white px-6 pb-10 pt-14 md:px-11">
-      <div class="mx-auto flex max-w-content flex-wrap items-start justify-between gap-9">
-      <div class="max-w-[280px]">
-        <div class="mb-3.5 flex items-center gap-3">
-          <Image src={logo} alt="" width={40} densities={[1, 2]} />
-          <span class="flex flex-col leading-tight">
-            <span class="font-heading text-[17px] font-semibold text-brand-dark">Lauren Nunes</span>
-            <span class="text-[10px] uppercase tracking-[0.14em] text-brand-muted">
-              Psicóloga · {CRP}
+    <footer
+      class="border-t border-brand-line bg-white px-6 pb-10 pt-14 md:px-11"
+    >
+      <div
+        class="mx-auto flex max-w-content flex-wrap items-start justify-between gap-9"
+      >
+        <div class="max-w-[280px]">
+          <div class="mb-3.5 flex items-center gap-3">
+            <Image src={logo} alt="" width={40} densities={[1, 2]} />
+            <span class="flex flex-col leading-tight">
+              <span
+                class="font-heading text-[17px] font-semibold text-brand-dark"
+                >Lauren Nunes</span
+              >
+              <span
+                class="text-[10px] uppercase tracking-[0.14em] text-brand-muted"
+              >
+                Psicóloga · {CRP}
+              </span>
             </span>
-          </span>
+          </div>
+          <p class="text-[13px] leading-relaxed text-brand-muted">
+            Psicoterapia online para adultos e famílias, em português, no Brasil
+            e no exterior.
+          </p>
         </div>
-        <p class="text-[13px] leading-relaxed text-brand-muted">
-          Psicoterapia online para adultos e famílias, em português, no Brasil e no exterior.
+
+        <nav aria-label="Rodapé" class="flex flex-col gap-2.5 text-sm">
+          <span class="text-[11px] uppercase tracking-[0.14em] text-brand-faint"
+            >Navegar</span
+          >
+          {
+            footerNav.map((item) => (
+              <a
+                href={item.href}
+                class="text-brand-subtle hover:text-brand-primary-hover"
+              >
+                {item.label}
+              </a>
+            ))
+          }
+        </nav>
+
+        <div class="flex flex-col gap-2.5 text-sm">
+          <span class="text-[11px] uppercase tracking-[0.14em] text-brand-faint"
+            >Contato</span
+          >
+          <a
+            href={WHATSAPP_URL}
+            target="_blank"
+            rel="noopener"
+            class="text-brand-subtle hover:text-brand-primary-hover"
+          >
+            WhatsApp {WHATSAPP_DISPLAY}
+          </a>
+          <a
+            href={INSTAGRAM_URL}
+            target="_blank"
+            rel="noopener"
+            class="text-brand-subtle hover:text-brand-primary-hover"
+          >
+            Instagram {INSTAGRAM_HANDLE}
+          </a>
+        </div>
+
+        <p class="max-w-[24ch] text-xs leading-relaxed text-brand-faint">
+          &copy; {new Date().getFullYear()} Lauren Nunes. Atendimento conforme a Resolução
+          CFP nº 11/2018.
         </p>
-      </div>
-
-      <nav aria-label="Rodapé" class="flex flex-col gap-2.5 text-sm">
-        <span class="text-[11px] uppercase tracking-[0.14em] text-brand-faint">Navegar</span>
-        {
-          footerNav.map((item) => (
-            <a href={item.href} class="text-brand-subtle hover:text-brand-primary-hover">
-              {item.label}
-            </a>
-          ))
-        }
-      </nav>
-
-      <div class="flex flex-col gap-2.5 text-sm">
-        <span class="text-[11px] uppercase tracking-[0.14em] text-brand-faint">Contato</span>
-        <a
-          href={WHATSAPP_URL}
-          target="_blank"
-          rel="noopener"
-          class="text-brand-subtle hover:text-brand-primary-hover"
-        >
-          WhatsApp {WHATSAPP_DISPLAY}
-        </a>
-        <a
-          href={INSTAGRAM_URL}
-          target="_blank"
-          rel="noopener"
-          class="text-brand-subtle hover:text-brand-primary-hover"
-        >
-          Instagram {INSTAGRAM_HANDLE}
-        </a>
-      </div>
-
-      <p class="max-w-[24ch] text-xs leading-relaxed text-brand-faint">
-        &copy; {new Date().getFullYear()} Lauren Nunes. Atendimento conforme a Resolução CFP nº 11/2018.
-      </p>
       </div>
     </footer>
   </body>
