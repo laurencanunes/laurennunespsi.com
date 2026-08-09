@@ -4,9 +4,9 @@ Personal/business site for Lauren Nunes (Psicóloga), built with
 [Astro](https://astro.build) + [Tailwind CSS](https://tailwindcss.com) and a
 Markdown-based blog. Deployed for free on GitHub Pages.
 
-> This is an intentionally minimal, unstyled-but-organized scaffold. Brand colors,
-> typography, and layout are placeholders — see the `TODO` comments in
-> `tailwind.config.mjs` and `src/styles/global.css`.
+The brand palette, typography, and other design tokens live in
+`tailwind.config.mjs` and are the single source of truth — components use the
+`brand-*` utilities rather than hardcoded colors.
 
 ## Requirements
 
@@ -43,6 +43,7 @@ npm run preview   # preview the production build locally
    pubDate: 2026-08-01
    # updatedDate: 2026-08-05   # optional
    # tags: ['tag-um', 'tag-dois']   # optional
+   # slug: meu-post-em-portugues   # optional — overrides the URL slug
    # draft: true                    # optional — hides the post from the site
    ---
 
@@ -54,24 +55,40 @@ npm run preview   # preview the production build locally
 The schema is defined and validated in `src/content/config.ts`. Posts with
 `draft: true` are excluded from the site.
 
+`slug` lets the URL differ from the file name, which is how English file names
+serve Portuguese URLs — `src/content/pages/about.md` with `slug: sobre` is
+published at `/sobre`. Astro reads it natively, so it is deliberately absent
+from the Zod schemas; adding it there is an error.
+
 ## Project structure
 
 ```
-public/            static assets copied as-is (logo.png, CNAME, favicon)
+public/            static assets copied as-is (CNAME, favicons)
 src/
+  assets/          images optimized at build time by Astro's <Image>
+  components/
+    WhatsAppButton.astro  the shared "Agendar pelo WhatsApp" CTA
+    WhatsAppIcon.astro
+  consts.ts        contact details (WhatsApp, Instagram, CRP) and site URL
   content/
-    config.ts      blog collection schema (Zod)
+    config.ts      collection schemas (Zod) for `blog` and `pages`
     blog/          Markdown posts
+    pages/         Markdown pages served at the site root, e.g. about.md → /sobre
   layouts/
-    BaseLayout.astro   shared HTML shell (head, nav, footer)
+    BaseLayout.astro   shared HTML shell (head/SEO, header, footer)
     BlogPost.astro     individual post layout
   pages/
-    index.astro        landing page (hero + latest 3 posts)
-    about.astro        static about page
+    index.astro        landing page (all sections live here)
+    [slug].astro       renders the `pages` collection at the root
     blog/index.astro   blog listing
     blog/[slug].astro  dynamic post route
-  styles/global.css    Tailwind entrypoint + font imports
+  styles/global.css    Tailwind entrypoint, font import, Markdown typography
+tailwind.config.mjs    brand colors, fonts, and other design tokens
 ```
+
+The blog routes build but are not linked from the site yet — the nav and footer
+entries in `BaseLayout.astro` are commented out and the homepage blog section is
+still gated.
 
 ## Deployment
 
