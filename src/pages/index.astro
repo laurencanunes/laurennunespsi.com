@@ -18,21 +18,22 @@ const dateFormat = new Intl.DateTimeFormat("pt-BR", {
 });
 
 const credentials = [
-  "Adultos, adolescentes e famílias",
   "Abordagem comportamental",
+  "Adultos, adolescentes e famílias",
   "Atendimento para imigrantes",
+  "Neurodivergentes",
   "Acompanhamento individualizado",
 ];
 
 const demands = [
   {
     title: "TDAH em adultos",
-    body: "Foco, organização e prazos. Estratégias comportamentais aplicadas à sua rotina real.",
+    body: Trabalhamos para o desenvolvimento de repertórios de organização, autorregulação e autocontrole, além do manejo da procrastinação, por meio da construção de estratégias práticas para demandas que geram sofrimento no cotidiano.,
     fill: "bg-brand-card-yellow",
   },
   {
     title: "Autismo (TEA)",
-    body: "Adultos autistas e famílias: entender o próprio funcionamento e reduzir o desgaste diário.",
+    body: "Auxilio adultos autistas e famílias a lidar com características do TEA, como rigidez comportamental, dificuldades de comunicação e interação social, regulação emocional e autonomia no cotidiano.,
     fill: "bg-brand-mint",
   },
   {
@@ -41,7 +42,7 @@ const demands = [
     fill: "bg-brand-card-peach",
   },
   {
-    title: "Autoestima",
+    title: "Autoestima e autoconfiança",
     body: "Rever a régua com que você se mede e a autocrítica que não dá trégua.",
     fill: "bg-brand-card-blue",
   },
@@ -60,19 +61,19 @@ const demands = [
 const steps = [
   {
     title: "Você me escreve",
-    body: "Uma mensagem no WhatsApp contando, com suas palavras, o que está buscando.",
+    body: "Uma mensagem no WhatsApp contando, brevemente, por qual motivo está buscando a psicoterapia.",
   },
   {
-    title: "Ajustamos o horário",
-    body: "Encontramos um espaço que caiba na sua rotina e no seu fuso horário.",
+    title: "Agendamos uma conversa, ou bate-papo",
+    body: "Encontramos um horário que caiba na sua rotina e no seu fuso horário.",
   },
   {
-    title: "Sessão de acolhimento",
-    body: "Por videochamada: sua história, suas queixas atuais e o que você espera do processo.",
+    title: "Bate-Papo",
+    body: "Você me conta mais detalhadamente o que está acontecendo com você e eu te explico a forma como eu trabalho, sem custos. Se fizer sentido para você e se eu puder atender a sua demanda, agendamos o primeiro atendimento.",
   },
   {
-    title: "Plano e acompanhamento",
-    body: "Objetivos claros, frequência definida junto e revisão do caminho ao longo do tempo.",
+    title: "Primeiro Atendimento",
+    body: "Começamos a compreender sua história, rotina e o que você espera da terapia. Juntos, começamos a definir os primeiros objetivos do processo.",
   },
 ];
 
@@ -591,7 +592,7 @@ const sectionTitle =
         <p
           class="mx-auto mt-4 max-w-[50ch] text-[17px] leading-relaxed text-brand-on-dark-bright"
         >
-          Me manda uma mensagem contando o que você procura. Eu respondo
+          Me manda uma mensagem contando o que você procura e eu te respondo
           pessoalmente.
         </p>
         <WhatsAppButton variant="inverted" class="mt-7"
