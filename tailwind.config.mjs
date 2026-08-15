@@ -37,7 +37,7 @@ export default {
             yellow: '#F7F4A8',
             peach: '#F3C7A0',
             blue: '#BBD8EA',
-            pink: '#F4D2E0',
+            pink: '#E3BFC4', // dusty rose — matches the lightness of its siblings
             purple: '#CDB9EF',
           },
         },
