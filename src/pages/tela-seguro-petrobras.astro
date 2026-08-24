@@ -1,0 +1,313 @@
+---
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import profile from "../assets/dra-lauren-nunes.png";
+import telaLogo from "../assets/tela-logo.png";
+import saudePetrobrasLogo from "../assets/saude-petrobras-logo.png";
+import {
+  INSTAGRAM_URL,
+  TELA_WHATSAPP_DISPLAY,
+  TELA_WHATSAPP_URL,
+} from "../consts";
+
+const title =
+  "Psicóloga para segurados do Saúde Petrobras · Psicoterapia online para adultos";
+const description =
+  "Psicoterapia individual online para adultos segurados pelo Saúde Petrobras, encaminhados pela TELA. Atendimento com Lauren Nunes, psicóloga CRP 06/172464. Agende pelo WhatsApp.";
+
+const offers = [
+  {
+    title: "Ansiedade e preocupação constante",
+    body: "Quando a preocupação passa a ocupar o dia, atrapalhar o sono ou o trabalho, olhamos para as situações em que ela aparece e construímos formas mais viáveis de lidar com elas.",
+    fill: "bg-brand-card-blue",
+  },
+  {
+    title: "Desânimo e perda de interesse",
+    body: "Períodos de cansaço, desmotivação ou afastamento das coisas que antes faziam sentido. Trabalhamos a retomada gradual de atividades e vínculos importantes para você.",
+    fill: "bg-brand-mint",
+  },
+  {
+    title: "Estresse e sobrecarga no trabalho",
+    body: "Rotinas exigentes, jornadas longas, pressão por resultado e a dificuldade de separar trabalho e vida pessoal, incluindo o desgaste acumulado ao longo da carreira.",
+    fill: "bg-brand-card-peach",
+  },
+  {
+    title: "Relações e conflitos",
+    body: "Dificuldades na relação com parceiros, familiares ou colegas: comunicação, limites, expectativas e formas de se posicionar sem se anular.",
+    fill: "bg-brand-card-yellow",
+  },
+  {
+    title: "Autoestima e autocobrança",
+    body: "Padrões de autocrítica, comparação e insegurança, e a construção de novas formas de se perceber e de se relacionar consigo.",
+    fill: "bg-brand-card-pink",
+  },
+  {
+    title: "Momentos de transição",
+    body: "Mudanças de cargo, aposentadoria, mudança de cidade, adoecimento, luto e outras viradas que pedem uma reorganização da vida.",
+    fill: "bg-brand-card-purple",
+  },
+];
+
+const steps = [
+  {
+    title: "Você me escreve no WhatsApp",
+    body: "Uma mensagem curta contando que veio pelo encaminhamento da TELA e o que está buscando na psicoterapia.",
+  },
+  {
+    title: "Agendamos uma conversa inicial",
+    body: "Uma conversa por videochamada, sem custo, para você me contar com mais detalhes o que está acontecendo e eu te explicar como trabalho.",
+  },
+  {
+    title: "Começamos o acompanhamento",
+    body: "Se fizer sentido para você, definimos horário e frequência e marcamos a primeira sessão.",
+  },
+];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": ["Psychologist", "ProfessionalService"],
+  name: "Lauren Nunes — Psicóloga",
+  description:
+    "Psicoterapia individual online para adultos, em português. Atendimento a segurados do Saúde Petrobras encaminhados pela TELA.",
+  telephone: "+5511956602498",
+  areaServed: "BR",
+  availableLanguage: "pt-BR",
+  sameAs: [INSTAGRAM_URL],
+};
+
+const eyebrow =
+  "text-xs font-semibold uppercase tracking-[0.18em] text-brand-eyebrow";
+const sectionTitle =
+  "font-heading text-[38px] font-bold leading-[1.14] tracking-tight text-brand-dark";
+---
+
+<BaseLayout
+  wide
+  title={title}
+  description={description}
+  schema={schema}
+  whatsappHref={TELA_WHATSAPP_URL}
+  whatsappDisplay={TELA_WHATSAPP_DISPLAY}
+>
+  <!-- Hero -->
+  <section class="px-6 pb-16 pt-16 md:px-11 lg:pt-20">
+    <div
+      class="mx-auto grid max-w-content grid-cols-1 items-center gap-14 lg:grid-cols-2"
+    >
+      <div>
+        <p
+          class="mb-5 text-xs font-semibold uppercase tracking-[0.2em] text-brand-eyebrow"
+        >
+          Encaminhamento TELA · Saúde Petrobras
+        </p>
+        <h1
+          class="text-pretty font-heading text-hero font-bold text-brand-dark"
+        >
+          Psicoterapia online para adultos segurados pelo Saúde Petrobras
+        </h1>
+        <p class="mt-6 max-w-[46ch] text-lg leading-relaxed text-brand-body">
+          Se você foi encaminhado pela TELA e está procurando acompanhamento
+          psicológico, é comigo que você conversa. Atendo psicoterapia
+          individual para adultos, por videochamada, com horários que caibam na
+          sua rotina de trabalho.
+        </p>
+        <div class="mt-8 flex flex-wrap gap-3.5">
+          <WhatsAppButton href={TELA_WHATSAPP_URL}
+            >Conversar no WhatsApp</WhatsAppButton
+          >
+          <a
+            href="#como-funciona"
+            class="inline-flex min-h-[44px] items-center rounded-2xl border-[1.5px] border-brand-border-strong px-8 py-4 text-lg font-semibold text-brand-subtle transition-colors hover:border-brand-accent hover:text-brand-primary"
+          >
+            Como funciona
+          </a>
+        </div>
+        <ul
+          class="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-brand-muted"
+        >
+          <li>Atendimento 100% online</li>
+          <li aria-hidden="true" class="text-brand-border-strong">·</li>
+          <li>Psicoterapia individual para adultos</li>
+          <li aria-hidden="true" class="text-brand-border-strong">·</li>
+          <li>Horários flexíveis</li>
+        </ul>
+      </div>
+
+      <div class="relative p-4">
+        <div class="absolute inset-0 rounded-3xl bg-brand-mint"></div>
+        <div
+          class="absolute -bottom-7 -left-7 h-[150px] w-[150px] rounded-[20px] bg-brand-card-yellow"
+        >
+        </div>
+        <Image
+          src={profile}
+          alt="Lauren Nunes, psicóloga."
+          width={1080}
+          format="webp"
+          quality={80}
+          loading="eager"
+          fetchpriority="high"
+          class="relative block h-[500px] w-full rounded-[18px] object-cover"
+        />
+      </div>
+    </div>
+  </section>
+
+  <!-- Origem do encaminhamento -->
+  <div class="border-y border-brand-line bg-brand-light">
+    <div
+      class="mx-auto flex max-w-content flex-wrap items-center justify-between gap-x-12 gap-y-7 px-6 py-9 md:px-11"
+    >
+      <p class="max-w-[34ch] text-sm leading-relaxed text-brand-muted">
+        Atendimento oferecido a partir do encaminhamento da TELA a segurados do
+        plano Saúde Petrobras.
+      </p>
+      <div class="flex flex-wrap items-center gap-x-11 gap-y-6">
+        <Image
+          src={telaLogo}
+          alt="TELA"
+          width={132}
+          densities={[1, 2]}
+          class="h-auto w-[108px]"
+        />
+        <Image
+          src={saudePetrobrasLogo}
+          alt="Saúde Petrobras"
+          width={188}
+          densities={[1, 2]}
+          class="h-auto w-[158px]"
+        />
+      </div>
+    </div>
+  </div>
+
+  <!-- Sobre -->
+  <section id="sobre" class="scroll-mt-20 px-6 py-20 md:px-11">
+    <div class="mx-auto max-w-content">
+      <div class="max-w-[720px]">
+        <p class={`mb-3.5 ${eyebrow}`}>Sobre mim</p>
+        <h2 class={`mb-5 ${sectionTitle}`}>Olá, eu sou a Lauren</h2>
+        <div
+          class="flex flex-col gap-3.5 text-[17px] leading-relaxed text-brand-body"
+        >
+          <p>
+            Sou psicóloga clínica, CRP 06/172464, e atendo adultos em
+            psicoterapia individual online. Meu trabalho parte da abordagem
+            comportamental: em vez de olhar para um sintoma isolado, buscamos
+            entender em quais situações determinados padrões aparecem e o que os
+            mantém hoje.
+          </p>
+          <p>
+            A partir dessa compreensão, construímos mudanças possíveis para a
+            sua realidade, com objetivos definidos junto com você e revisados ao
+            longo do processo.
+          </p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- O que atendo -->
+  <section class="bg-brand-light px-6 py-20 md:px-11">
+    <div class="mx-auto max-w-content">
+      <div class="mb-11 max-w-[640px]">
+        <p class={`mb-3.5 ${eyebrow}`}>Atendimento</p>
+        <h2 class={`mb-3.5 ${sectionTitle}`}>
+          Psicoterapia individual para adultos
+        </h2>
+        <p class="text-[17px] leading-relaxed text-brand-body">
+          Sessões individuais por videochamada, com frequência definida caso a
+          caso. Você não precisa chegar com um diagnóstico ou saber exatamente o
+          que está acontecendo. Abaixo estão algumas das demandas mais
+          frequentes.
+        </p>
+      </div>
+      <div class="grid grid-cols-1 gap-5 sm:grid-cols-2 lg:grid-cols-3">
+        {
+          offers.map((item) => (
+            <article
+              class:list={[
+                "flex min-h-[196px] flex-col rounded-[20px] p-7",
+                item.fill,
+              ]}
+            >
+              <h3 class="mb-2.5 font-heading text-xl font-bold text-brand-dark">
+                {item.title}
+              </h3>
+              <p class="text-[15px] leading-relaxed text-brand-subtle">
+                {item.body}
+              </p>
+            </article>
+          ))
+        }
+      </div>
+    </div>
+  </section>
+
+  <!-- Como funciona -->
+  <section id="como-funciona" class="scroll-mt-20 px-6 py-20 md:px-11">
+    <div class="mx-auto max-w-content">
+      <div class="mb-11 max-w-[640px]">
+        <p class={`mb-3.5 ${eyebrow}`}>Como funciona</p>
+        <h2 class={`mb-3.5 ${sectionTitle}`}>
+          Três passos até a primeira sessão
+        </h2>
+        <p class="text-[17px] leading-relaxed text-brand-body">
+          Combinamos tudo por mensagem: horário, formato e condições.
+        </p>
+      </div>
+      <ol class="grid grid-cols-1 gap-5 sm:grid-cols-3">
+        {
+          steps.map((step, i) => (
+            <li class="rounded-[20px] border border-brand-border p-7 transition-colors hover:border-brand-accent">
+              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-accent font-bold text-white">
+                {i + 1}
+              </span>
+              <h3 class="mb-2 mt-5 font-heading text-[19px] font-semibold text-brand-dark">
+                {step.title}
+              </h3>
+              <p class="text-[15px] leading-relaxed text-brand-muted">
+                {step.body}
+              </p>
+            </li>
+          ))
+        }
+      </ol>
+    </div>
+  </section>
+
+  <!-- Contato -->
+  <section class="bg-brand-light px-6 py-20 md:px-11">
+    <div
+      class="relative mx-auto max-w-content overflow-hidden rounded-[28px] bg-brand-accent px-8 py-16 text-center"
+    >
+      <div
+        aria-hidden="true"
+        class="absolute -bottom-14 -left-10 h-[220px] w-[220px] rounded-full bg-white/10"
+      >
+      </div>
+      <div
+        aria-hidden="true"
+        class="absolute -right-8 -top-16 h-[180px] w-[180px] rounded-full bg-brand-card-yellow/25"
+      >
+      </div>
+      <div class="relative">
+        <h2
+          class="mx-auto max-w-[24ch] font-heading text-cta-title font-bold text-white"
+        >
+          Vamos marcar sua conversa inicial
+        </h2>
+        <p
+          class="mx-auto mt-4 max-w-[50ch] text-[17px] leading-relaxed text-brand-on-dark-bright"
+        >
+          Me manda uma mensagem contando que veio pelo encaminhamento da TELA e
+          eu te respondo pessoalmente.
+        </p>
+        <WhatsAppButton variant="inverted" href={TELA_WHATSAPP_URL} class="mt-7"
+          >Falar no WhatsApp</WhatsAppButton
+        >
+      </div>
+    </div>
+  </section>
+</BaseLayout>

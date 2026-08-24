@@ -32,6 +32,12 @@ interface Props {
   wide?: boolean;
   /** Extra JSON-LD to inject into <head>. */
   schema?: unknown;
+  /**
+   * Referral pages route every WhatsApp link on the page — header button and
+   * footer contact included — to their own number.
+   */
+  whatsappHref?: string;
+  whatsappDisplay?: string;
 }
 
 const {
@@ -40,6 +46,8 @@ const {
   ogImage,
   wide = false,
   schema,
+  whatsappHref = WHATSAPP_URL,
+  whatsappDisplay = WHATSAPP_DISPLAY,
 } = Astro.props;
 
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
@@ -58,6 +66,7 @@ const footerNav = [
   { href: "/#demandas", label: "Demandas" },
   // { href: '/blog', label: 'Blog' },
   { href: "/#faq", label: "FAQ" },
+  { href: "/tela-seguro-petrobras", label: "Segurados Saúde Petrobras" },
 ];
 ---
 
@@ -77,17 +86,21 @@ const footerNav = [
     <meta property="og:locale" content="pt_BR" />
     <meta property="og:title" content={title} />
     <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonical} />
+    <meta property="og:site_name" content="Lauren Nunes Psicóloga" />
     {
       ogImage && (
         <meta property="og:image" content={new URL(ogImage, SITE_URL).href} />
       )
     }
     <meta name="twitter:card" content="summary_large_image" />
-    {/* Only the two weights that cover most above-the-fold text: 400 (body) and
+    {
+      /* Only the two weights that cover most above-the-fold text: 400 (body) and
         700 (hero h1). 500/600 are nav and eyebrow text, small enough that the
         swap is not worth taking priority from the hero image. `crossorigin` is
         required even same-origin — fonts are fetched in CORS mode, and without
-        it the preload misses and the font downloads twice. */}
+        it the preload misses and the font downloads twice. */
+    }
     <link
       rel="preload"
       href={poppins400}
@@ -154,7 +167,9 @@ const footerNav = [
               ))
             }
           </span>
-          <WhatsAppButton size="sm">Agendar pelo WhatsApp</WhatsAppButton>
+          <WhatsAppButton size="sm" href={whatsappHref}
+            >Agendar pelo WhatsApp</WhatsAppButton
+          >
         </nav>
       </div>
     </header>
@@ -219,12 +234,12 @@ const footerNav = [
             >Contato</span
           >
           <a
-            href={WHATSAPP_URL}
+            href={whatsappHref}
             target="_blank"
             rel="noopener"
             class="text-brand-subtle hover:text-brand-primary-hover"
           >
-            WhatsApp {WHATSAPP_DISPLAY}
+            WhatsApp {whatsappDisplay}
           </a>
           <a
             href={INSTAGRAM_URL}

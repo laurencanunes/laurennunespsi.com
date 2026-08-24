@@ -17,3 +17,7 @@ export const INSTAGRAM_HANDLE = '@laurennunespsi';
 export const INSTAGRAM_URL = 'https://www.instagram.com/laurennunespsi/';
 
 export const GOOGLE_REVIEWS_URL = 'https://share.google/tV6vLHvMFLBiJjUnM';
+
+/** Dedicated line for TELA Saúde Petrobras (/tela-seguro-petrobras). */
+export const TELA_WHATSAPP_URL = 'https://wa.me/5511956602498';
+export const TELA_WHATSAPP_DISPLAY = '+55 11 95660-2498';
