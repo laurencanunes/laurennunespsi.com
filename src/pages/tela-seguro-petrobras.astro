@@ -49,21 +49,6 @@ const offers = [
   },
 ];
 
-const steps = [
-  {
-    title: "Você me escreve no WhatsApp",
-    body: "Uma mensagem curta contando que veio pelo encaminhamento da TELA e o que está buscando na psicoterapia.",
-  },
-  {
-    title: "Agendamos uma conversa inicial",
-    body: "Uma conversa por videochamada, sem custo, para você me contar com mais detalhes o que está acontecendo e eu te explicar como trabalho.",
-  },
-  {
-    title: "Começamos o acompanhamento",
-    body: "Se fizer sentido para você, definimos horário e frequência e marcamos a primeira sessão.",
-  },
-];
-
 const schema = {
   "@context": "https://schema.org",
   "@type": ["Psychologist", "ProfessionalService"],
@@ -116,12 +101,6 @@ const sectionTitle =
           <WhatsAppButton href={TELA_WHATSAPP_URL}
             >Conversar no WhatsApp</WhatsAppButton
           >
-          <a
-            href="#como-funciona"
-            class="inline-flex min-h-[44px] items-center rounded-2xl border-[1.5px] border-brand-border-strong px-8 py-4 text-lg font-semibold text-brand-subtle transition-colors hover:border-brand-accent hover:text-brand-primary"
-          >
-            Como funciona
-          </a>
         </div>
         <ul
           class="mt-9 flex flex-wrap items-center gap-x-5 gap-y-2 text-[13px] text-brand-muted"
@@ -242,38 +221,6 @@ const sectionTitle =
           ))
         }
       </div>
-    </div>
-  </section>
-
-  <!-- Como funciona -->
-  <section id="como-funciona" class="scroll-mt-20 px-6 py-20 md:px-11">
-    <div class="mx-auto max-w-content">
-      <div class="mb-11 max-w-[640px]">
-        <p class={`mb-3.5 ${eyebrow}`}>Como funciona</p>
-        <h2 class={`mb-3.5 ${sectionTitle}`}>
-          Três passos até a primeira sessão
-        </h2>
-        <p class="text-[17px] leading-relaxed text-brand-body">
-          Combinamos tudo por mensagem: horário, formato e condições.
-        </p>
-      </div>
-      <ol class="grid grid-cols-1 gap-5 sm:grid-cols-3">
-        {
-          steps.map((step, i) => (
-            <li class="rounded-[20px] border border-brand-border p-7 transition-colors hover:border-brand-accent">
-              <span class="inline-flex h-10 w-10 items-center justify-center rounded-xl bg-brand-accent font-bold text-white">
-                {i + 1}
-              </span>
-              <h3 class="mb-2 mt-5 font-heading text-[19px] font-semibold text-brand-dark">
-                {step.title}
-              </h3>
-              <p class="text-[15px] leading-relaxed text-brand-muted">
-                {step.body}
-              </p>
-            </li>
-          ))
-        }
-      </ol>
     </div>
   </section>
 
