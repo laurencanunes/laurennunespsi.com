@@ -4,9 +4,10 @@ This file provides guidance to Claude Code (claude.ai/code) when working with co
 
 ## Commands
 
-Node 22 is required (`.nvmrc`, `engines` in `package.json`). Astro will not run
-on older majors. Since each tool call gets a fresh shell, run `nvm use` in the
-same command — it reads `.nvmrc`:
+Node 26 (current LTS) is required (`.nvmrc`, `engines` in `package.json`).
+Astro will not run on older majors. Since each tool call gets a fresh shell, run
+`nvm use` in the same command — it reads `.nvmrc` (mise users: `mise` picks up
+`.nvmrc` too, e.g. `eval "$(mise env -s bash)" && npm run build`):
 
 ```bash
 nvm use && npm run dev      # dev server on http://localhost:4321
@@ -15,7 +16,7 @@ nvm use && npm run preview  # serve the production build
 ```
 
 Drop the `nvm use &&` prefix only after confirming `node --version` is already
-22+ in that same call — an environment whose nvm default points at an older
+26+ in that same call — an environment whose nvm default points at an older
 version will otherwise fail with a confusing syntax or engine error.
 
 There is no test suite, linter, or formatter configured. `npm run build` is the
@@ -25,7 +26,8 @@ frontmatter field fails the build.
 
 ## Architecture
 
-Astro 5 in `output: 'static'` mode + Tailwind (via `@astrojs/tailwind`). No
+Astro 7 in `output: 'static'` mode + Tailwind CSS 4 (via the `@tailwindcss/vite`
+plugin in `astro.config.mjs`; there is no `tailwind.config.*` file). No
 client-side framework and no JS islands — everything ships as static HTML.
 Pushing to `main` triggers `.github/workflows/deploy.yml`, which builds with
 `withastro/action` and publishes `dist/` to GitHub Pages. The custom domain
@@ -61,7 +63,8 @@ consts (`eyebrow`, `sectionTitle`); reuse them for new sections.
 
 ### Content collections
 
-`src/content/config.ts` defines two collections:
+`src/content.config.ts` defines two collections (Content Layer API, `glob()`
+loaders; entries are addressed by `entry.id` and rendered with `render(entry)`):
 
 - `blog` → rendered by `src/pages/blog/[slug].astro`, listed at `/blog`.
 - `pages` → standalone root-level pages rendered by `src/pages/[slug].astro`.
@@ -69,9 +72,9 @@ consts (`eyebrow`, `sectionTitle`); reuse them for new sections.
 Both filter out `draft: true` entries in `getStaticPaths`/`getCollection`.
 
 **Slugs are decoupled from filenames**: Markdown filenames are English, and the
-public URL comes from an optional `slug` frontmatter field that Astro reads
-natively. It is deliberately *not* declared in the Zod schemas — adding it there
-is an error. Example: `src/content/pages/about.md` with `slug: sobre` serves
+public URL comes from an optional `slug` frontmatter field, which the `glob()`
+loader uses as the entry `id`. It is deliberately *not* declared in the Zod
+schemas. Example: `src/content/pages/about.md` with `slug: sobre` serves
 `/sobre`.
 
 ### Blog is built but not linked
@@ -83,18 +86,18 @@ means touching all three places.
 
 ## Conventions
 
-- **Never hardcode hex colors.** The full brand palette lives under
-  `theme.extend.colors.brand` in `tailwind.config.mjs` and is the single source
-  of truth (`text-brand-dark`, `bg-brand-accent`, `bg-brand-card-peach`, …),
+- **Never hardcode hex colors.** The full brand palette lives in the
+  `@theme` block (`--color-brand-*`) in `src/styles/global.css` and is the single
+  source of truth (`text-brand-dark`, `bg-brand-accent`, `bg-brand-card-peach`, …),
   including `on-dark-*` tints for the dark sections.
 - Contact details (WhatsApp number and prefilled message, Instagram, CRP,
   Google reviews link, `SITE_URL`) live in `src/consts.ts` — import from there,
   never inline. All WhatsApp CTAs go through `components/WhatsAppButton.astro`.
-- Markdown bodies are styled by the `.prose-custom` component layer in
+- Markdown bodies are styled by the `prose-custom` custom utility (`@utility`) in
   `src/styles/global.css`, not by a typography plugin.
 - Images in `src/assets/` are rendered with Astro's `<Image>` (optimized to
   webp); `public/` is for pass-through assets only (favicons, CNAME).
-- Custom Tailwind extensions worth knowing: the `nav:` screen (900px) for the
+- Custom Tailwind theme tokens worth knowing: the `nav:` breakpoint (900px) for the
   nav collapse, `max-w-content` (1280px) for the landing column, the
   `hero`/`cta-title` fluid font sizes, and `bg-photo-placeholder` for
   pending-photo slots.

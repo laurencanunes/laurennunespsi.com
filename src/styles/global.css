@@ -1,43 +1,113 @@
 /*
  * Global styles.
  *
- * Poppins is the brand typeface; `fontFamily` in tailwind.config.mjs points at it.
+ * Poppins is the brand typeface; `--font-sans`/`--font-heading` in `@theme` point at it.
  * It is self-hosted via @fontsource, imported in BaseLayout.astro — not with an
  * @import here: `build.inlineStylesheets` concatenates the CSS chunks, which
  * would push an @import past the first style rule, where browsers ignore it.
  */
 
-@tailwind base;
-@tailwind components;
-@tailwind utilities;
+@import 'tailwindcss';
 
-@layer components {
+/*
+ * Tailwind theme — single source of truth for brand tokens (colors from the
+ * Lauren Nunes landing page design). Never hardcode hex values in components.
+ * Usage: `bg-brand-accent`, `text-brand-primary`, `bg-brand-card-peach`, `font-heading`,
+ * `text-hero`, `bg-photo-placeholder`, `nav:` (900px nav breakpoint), `max-w-content`.
+ */
+@theme {
+  --color-brand-primary: #2f5e48;
+  --color-brand-primary-hover: #4f9271;
+  --color-brand-accent: #6eaf8d;
+  --color-brand-accent-hover: #4f9271;
+  --color-brand-eyebrow: #3e7b58;
+  --color-brand-dark: #1f3a2d;
+  --color-brand-body: #4a5b52;
+  --color-brand-subtle: #3f5a4c;
+  --color-brand-muted: #5f6e66;
+  --color-brand-faint: #64736b;
+  --color-brand-light: #f6f8f5;
+  --color-brand-line: #edefec;
+  --color-brand-border: #e4e9e4;
+  --color-brand-border-strong: #cfd8cf;
+  --color-brand-mint: #cfebda;
+  --color-brand-star: #e4a93c;
+  --color-brand-on-dark: #c6dccf;
+  --color-brand-on-dark-muted: #bcd3c5;
+  --color-brand-on-dark-bright: #f0f8f3;
+  --color-brand-on-dark-accent: #8fd3ad;
+
+  --color-brand-card-yellow: #f7f4a8;
+  --color-brand-card-peach: #f3c7a0;
+  --color-brand-card-blue: #bbd8ea;
+  --color-brand-card-pink: #e3bfc4;
+  --color-brand-card-purple: #cdb9ef;
+
+  --font-sans: Poppins, system-ui, -apple-system, 'Segoe UI', sans-serif;
+  --font-heading: Poppins, system-ui, -apple-system, 'Segoe UI', sans-serif;
+
+  --text-hero: clamp(2.5rem, 3.6vw, 3.625rem);
+  --text-hero--line-height: 1.07;
+  --text-hero--letter-spacing: -0.02em;
+  --text-cta-title: clamp(2.125rem, 3vw, 2.875rem);
+  --text-cta-title--line-height: 1.1;
+
+  --background-image-photo-placeholder: repeating-linear-gradient(
+    135deg,
+    #e8f1ea 0 12px,
+    #dce9df 12px 24px
+  );
+
+  --breakpoint-nav: 900px;
+
+  --container-content: 1280px;
+}
+
+/*
+  The default border color has changed to `currentcolor` in Tailwind CSS v4,
+  so we've added these compatibility styles to make sure everything still
+  looks the same as it did with Tailwind CSS v3.
+
+  If we ever want to remove these styles, we need to add an explicit border
+  color utility to any element that depends on these defaults.
+*/
+@layer base {
+  *,
+  ::after,
+  ::before,
+  ::backdrop,
+  ::file-selector-button {
+    border-color: var(--color-gray-200, currentcolor);
+  }
+}
+
+@utility prose-custom {
   /* Typography for Markdown bodies (blog posts and content pages). */
-  .prose-custom :where(h2) {
+  & :where(h2) {
     @apply mt-8 font-heading text-2xl font-semibold text-brand-dark;
   }
 
-  .prose-custom :where(h3) {
+  & :where(h3) {
     @apply mt-6 font-heading text-xl font-semibold text-brand-dark;
   }
 
-  .prose-custom :where(p) {
+  & :where(p) {
     @apply mt-4 leading-relaxed text-brand-dark/80;
   }
 
-  .prose-custom :where(ul) {
+  & :where(ul) {
     @apply mt-4 list-disc space-y-1 pl-6 text-brand-dark/80;
   }
 
-  .prose-custom :where(ol) {
+  & :where(ol) {
     @apply mt-4 list-decimal space-y-1 pl-6 text-brand-dark/80;
   }
 
-  .prose-custom :where(a) {
+  & :where(a) {
     @apply text-brand-primary hover:underline;
   }
 
-  .prose-custom :where(strong) {
+  & :where(strong) {
     @apply font-semibold text-brand-dark;
   }
 }

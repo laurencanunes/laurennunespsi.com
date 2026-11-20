@@ -425,7 +425,7 @@ const sectionTitle =
           rel="noopener"
           class="inline-flex min-h-[44px] items-center gap-3 rounded-2xl border border-brand-border bg-white px-6 py-3.5 text-[15px] font-semibold text-brand-primary transition-colors hover:border-brand-accent"
         >
-          <span aria-hidden="true" class="tracking-[0.1em] text-brand-star"
+          <span aria-hidden="true" class="tracking-widest text-brand-star"
             >★★★★★</span
           >
           Avaliações no Google
@@ -513,7 +513,7 @@ const sectionTitle =
           <div class="grid grid-cols-1 gap-5 md:grid-cols-3">
             {posts.map((post) => (
               <a
-                href={`/blog/${post.slug}`}
+                href={`/blog/${post.id}`}
                 class="flex flex-col overflow-hidden rounded-[20px] border border-brand-border transition-colors hover:border-brand-accent"
               >
                 {/* TODO: add a `heroImage` to the blog schema and render it here. */}

@@ -38,7 +38,7 @@ jobs:
         # `dist/` folder as a Pages artifact automatically.
         with:
           # Keep CI on the same major as .nvmrc / package.json engines.
-          node-version: 22
+          node-version: 26
 
   deploy:
     needs: build

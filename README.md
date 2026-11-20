@@ -4,18 +4,18 @@ Website built with [Astro](https://astro.build) + [Tailwind CSS](https://tailwin
 Markdown-based blog. Deployed for on GitHub Pages.
 
 The brand palette, typography, and other design tokens live in
-`tailwind.config.mjs` and are the single source of truth — components use the
+the `@theme` block of `src/styles/global.css` and are the single source of truth — components use the
 `brand-*` utilities rather than hardcoded colors.
 
 ## Requirements
 
-- Node.js 22+ — the version is pinned in `.nvmrc`
+- Node.js 26+ (current LTS) — the version is pinned in `.nvmrc`
 - npm
 
 ## Run locally
 
 ```bash
-nvm use      # picks up Node 22 from .nvmrc (nvm is optional but recommended)
+nvm use      # picks up Node 26 from .nvmrc (nvm is optional but recommended)
 npm install
 npm run dev
 ```
@@ -51,7 +51,7 @@ npm run preview   # preview the production build locally
 
 3. Write the body in Markdown below the frontmatter.
 
-The schema is defined and validated in `src/content/config.ts`. Posts with
+The schema is defined and validated in `src/content.config.ts`. Posts with
 `draft: true` are excluded from the site.
 
 `slug` lets the URL differ from the file name, which is how English file names
@@ -69,8 +69,8 @@ src/
     WhatsAppButton.astro  the shared "Agendar pelo WhatsApp" CTA
     WhatsAppIcon.astro
   consts.ts        contact details (WhatsApp, Instagram, CRP) and site URL
+  content.config.ts  collection loaders + schemas (Zod) for `blog` and `pages`
   content/
-    config.ts      collection schemas (Zod) for `blog` and `pages`
     blog/          Markdown posts
     pages/         Markdown pages served at the site root, e.g. about.md → /sobre
   layouts/
@@ -81,8 +81,7 @@ src/
     [slug].astro       renders the `pages` collection at the root
     blog/index.astro   blog listing
     blog/[slug].astro  dynamic post route
-  styles/global.css    Tailwind entrypoint, font import, Markdown typography
-tailwind.config.mjs    brand colors, fonts, and other design tokens
+  styles/global.css    Tailwind entrypoint, `@theme` design tokens (brand colors, fonts), Markdown typography
 ```
 
 The blog routes build but are not linked from the site yet — the nav and footer

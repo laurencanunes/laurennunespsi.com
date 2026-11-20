@@ -25,7 +25,7 @@ const dateFormat = new Intl.DateTimeFormat('pt-BR', {
           <li>
             <article>
               <h2 class="text-2xl font-semibold">
-                <a href={`/blog/${post.slug}`} class="hover:text-brand-primary">
+                <a href={`/blog/${post.id}`} class="hover:text-brand-primary">
                   {post.data.title}
                 </a>
               </h2>
@@ -36,7 +36,7 @@ const dateFormat = new Intl.DateTimeFormat('pt-BR', {
               </p>
               <p class="mt-2 text-brand-dark/80">{post.data.description}</p>
               <a
-                href={`/blog/${post.slug}`}
+                href={`/blog/${post.id}`}
                 class="mt-2 inline-block text-brand-primary hover:underline"
               >
                 Ler mais &rarr;

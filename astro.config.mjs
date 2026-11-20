@@ -1,6 +1,6 @@
 // @ts-check
 import { defineConfig } from 'astro/config';
-import tailwind from '@astrojs/tailwind';
+import tailwindcss from '@tailwindcss/vite';
 
 // https://astro.build/config
 export default defineConfig({
@@ -16,11 +16,13 @@ export default defineConfig({
     inlineStylesheets: 'always',
   },
 
-  integrations: [
-    tailwind(),
-  ],
+  // Tailwind CSS v4 runs as a Vite plugin; its config lives in
+  // src/styles/global.css (`@theme`), imported by BaseLayout.astro.
+  vite: {
+    plugins: [tailwindcss()],
+  },
 
-  // TODO: add extra integrations later, e.g.:
+  // TODO: add integrations later, e.g.:
   //   import sitemap from '@astrojs/sitemap';
   //   import rss from '@astrojs/rss';
   // and register `sitemap()` above. (RSS is set up per-endpoint, not as an integration.)

@@ -3,13 +3,13 @@
  * Root-level content pages. The URL is `slug` from the Markdown frontmatter,
  * falling back to the filename — so src/content/pages/about.md serves /sobre.
  */
-import { getCollection, type CollectionEntry } from 'astro:content';
+import { getCollection, render, type CollectionEntry } from 'astro:content';
 import BaseLayout from '../layouts/BaseLayout.astro';
 
 export async function getStaticPaths() {
   const pages = await getCollection('pages', ({ data }) => !data.draft);
   return pages.map((page) => ({
-    params: { slug: page.slug },
+    params: { slug: page.id },
     props: { page },
   }));
 }
@@ -19,7 +19,7 @@ interface Props {
 }
 
 const { page } = Astro.props;
-const { Content } = await page.render();
+const { Content } = await render(page);
 ---
 
 <BaseLayout title={page.data.title} description={page.data.description}>

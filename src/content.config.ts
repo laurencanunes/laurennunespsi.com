@@ -1,14 +1,16 @@
-import { defineCollection, z } from 'astro:content';
+import { defineCollection } from 'astro:content';
+import { glob } from 'astro/loaders';
+import { z } from 'astro/zod';
 
 /*
  * Filenames are in English; the public URL comes from the optional `slug`
- * frontmatter field, which Astro reads natively (so it is deliberately absent
- * from the schemas below — declaring it there is an error). Without it the
- * filename is used, so `about.md` + `slug: sobre` serves /sobre.
+ * frontmatter field, which the glob loader uses as the entry `id` (so it is
+ * deliberately absent from the schemas below). Without it the filename is
+ * used, so `about.md` + `slug: sobre` serves /sobre.
  */
 
 const blog = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/blog' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
@@ -21,7 +23,7 @@ const blog = defineCollection({
 
 /** Standalone content pages served at the site root, e.g. /sobre. */
 const pages = defineCollection({
-  type: 'content',
+  loader: glob({ pattern: '**/*.md', base: './src/content/pages' }),
   schema: z.object({
     title: z.string(),
     description: z.string(),
