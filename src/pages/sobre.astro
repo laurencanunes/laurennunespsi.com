@@ -4,7 +4,7 @@
  * because the layout (portrait hero, timeline, countries band) needs structured
  * data. Edit the arrays below to change the copy.
  */
-import { Image } from "astro:assets";
+import { Image, getImage } from "astro:assets";
 import BaseLayout from "../layouts/BaseLayout.astro";
 import WhatsAppButton from "../components/WhatsAppButton.astro";
 import portrait from "../assets/psicologa-lauren-nunes.jpg";
@@ -57,6 +57,20 @@ const approaches = [
   },
 ];
 
+/*
+ * Link-preview thumbnail (WhatsApp, Instagram, etc.). A square JPEG: WhatsApp
+ * shows link previews as a square crop and ignores images over ~300 KB.
+ */
+const ogImage = await getImage({
+  src: portrait,
+  width: 800,
+  height: 800,
+  fit: "cover",
+  position: "top",
+  format: "jpg",
+  quality: 80,
+});
+
 const countries = ["Canadá", "Filipinas", "Suíça", "Portugal"];
 
 const schema = {
@@ -77,7 +91,13 @@ const sectionTitle =
   "font-heading text-[32px] font-bold leading-[1.15] tracking-tight text-brand-dark sm:text-[38px]";
 ---
 
-<BaseLayout wide title={title} description={description} schema={schema}>
+<BaseLayout
+  wide
+  title={title}
+  description={description}
+  ogImage={ogImage.src}
+  schema={schema}
+>
   <!-- Hero -->
   <section class="px-6 pb-20 pt-14 md:px-11 lg:pt-20">
     <div
