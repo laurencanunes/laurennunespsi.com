@@ -10,6 +10,11 @@ export default defineConfig({
   // Fully static build, deployed to GitHub Pages.
   output: 'static',
 
+  // GitHub Pages serves each page from <slug>/index.html and 301-redirects
+  // /<slug> to /<slug>/. Enforce the trailing slash so internal links and
+  // canonicals always point at the final URL instead of the redirect.
+  trailingSlash: 'always',
+
   build: {
     // Total CSS is well under 10KB, so inlining it into each page's <head>
     // beats paying for extra render-blocking requests before first paint.

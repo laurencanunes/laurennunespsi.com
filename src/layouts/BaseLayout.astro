@@ -53,20 +53,20 @@ const {
 const canonical = new URL(Astro.url.pathname, SITE_URL).href;
 
 const nav = [
-  { href: "/sobre", label: "Sobre" },
+  { href: "/sobre/", label: "Sobre" },
   { href: "/#demandas", label: "Demandas" },
   { href: "/#como-funciona", label: "Como funciona" },
-  // { href: '/blog', label: 'Blog' },
+  // { href: '/blog/', label: 'Blog' },
 ];
 
 // /blog is not live yet, so the remaining footer links point at the matching
 // homepage section — these resolve from any page.
 const footerNav = [
-  { href: "/sobre", label: "Sobre mim" },
+  { href: "/sobre/", label: "Sobre mim" },
   { href: "/#demandas", label: "Demandas" },
-  // { href: '/blog', label: 'Blog' },
+  // { href: '/blog/', label: 'Blog' },
   { href: "/#faq", label: "FAQ" },
-  { href: "/tela-seguro-petrobras", label: "Segurados Saúde Petrobras" },
+  { href: "/tela-seguro-petrobras/", label: "Segurados Saúde Petrobras" },
 ];
 ---
 
