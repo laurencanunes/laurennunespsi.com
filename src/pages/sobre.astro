@@ -1,0 +1,246 @@
+---
+/*
+ * /sobre — Lauren's bio. A dedicated page rather than a `pages` Markdown entry
+ * because the layout (portrait hero, timeline, countries band) needs structured
+ * data. Edit the arrays below to change the copy.
+ */
+import { Image } from "astro:assets";
+import BaseLayout from "../layouts/BaseLayout.astro";
+import WhatsAppButton from "../components/WhatsAppButton.astro";
+import portrait from "../assets/psicologa-lauren-nunes.jpg";
+import { CRP, INSTAGRAM_URL, SITE_URL } from "../consts";
+
+const title = "Sobre · Lauren Nunes";
+const description =
+  "Lauren Nunes é psicóloga graduada pela Unesp, com oito anos de atuação em Análise do Comportamento Aplicada (ABA) e atendimento clínico de crianças, adolescentes e adultos.";
+
+const education = [
+  {
+    title: "Graduação em Psicologia",
+    place: "Universidade Estadual Paulista (Unesp), campus Bauru",
+  },
+  {
+    title: "Pós-Graduação em Intervenção ABA para Autismo e Deficiência Intelectual",
+    place: "CBI of Miami",
+  },
+];
+
+/** Chronological, oldest first. */
+const timeline = [
+  {
+    period: "2017 – 2018",
+    title: "Estagiária",
+    place: "Clínica Bárbara Trevizan Guerra",
+  },
+  {
+    period: "2024 – 2025",
+    title: "Psicóloga clínica",
+    place: "CTO Sorocaba",
+  },
+  {
+    period: "Hoje",
+    title: "Supervisora de programas terapêuticos baseados em ABA",
+    place: "Empresa de telessaúde, além de consultório particular",
+  },
+];
+
+const approaches = [
+  {
+    name: "Terapia por Contingências de Reforçamento",
+    short: "TCR",
+    fill: "bg-brand-mint",
+  },
+  {
+    name: "Análise do Comportamento Aplicada",
+    short: "ABA",
+    fill: "bg-brand-card-yellow",
+  },
+];
+
+const countries = ["Canadá", "Filipinas", "Suíça", "Portugal"];
+
+const schema = {
+  "@context": "https://schema.org",
+  "@type": "Person",
+  name: "Lauren Nunes",
+  jobTitle: "Psicóloga",
+  url: new URL("/sobre/", SITE_URL).href,
+  alumniOf: {
+    "@type": "CollegeOrUniversity",
+    name: "Universidade Estadual Paulista (Unesp)",
+  },
+  knowsAbout: approaches.map((a) => `${a.name} (${a.short})`),
+  sameAs: [INSTAGRAM_URL],
+};
+
+const sectionTitle =
+  "font-heading text-[32px] font-bold leading-[1.15] tracking-tight text-brand-dark sm:text-[38px]";
+---
+
+<BaseLayout wide title={title} description={description} schema={schema}>
+  <!-- Hero -->
+  <section class="px-6 pb-20 pt-14 md:px-11 lg:pt-20">
+    <div
+      class="mx-auto grid max-w-content grid-cols-1 items-center gap-16 lg:grid-cols-[1fr_1.1fr]"
+    >
+      <div class="order-2">
+        <h1
+          class="font-heading text-hero font-bold text-balance text-brand-dark"
+        >
+          Psicóloga Lauren Nunes
+        </h1>
+        <p class="mt-3 text-sm font-medium text-brand-muted">{CRP}</p>
+        <p class="mt-7 max-w-[52ch] text-lg leading-relaxed text-brand-body">
+          Atua há oito anos com Análise do Comportamento Aplicada (ABA) em
+          contextos clínicos e educacionais, com foco em aprendizagem,
+          desenvolvimento de habilidades adaptativas e promoção de interações
+          sociais de crianças e adolescentes com Transtorno do Espectro Autista
+          (TEA) e outros transtornos do neurodesenvolvimento.
+        </p>
+        <p class="mt-4 max-w-[52ch] text-lg leading-relaxed text-brand-body">
+          Atualmente, supervisiona programas terapêuticos baseados em ABA em uma
+          empresa de telessaúde e realiza atendimentos clínicos em consultório
+          particular com crianças, adolescentes e adultos.
+        </p>
+      </div>
+
+      <figure class="relative order-1 mx-auto w-full max-w-[480px]">
+        <div
+          aria-hidden="true"
+          class="absolute inset-0 translate-x-4 translate-y-4 rounded-[28px] bg-brand-card-pink sm:translate-x-6 sm:translate-y-6"
+        >
+        </div>
+        <div
+          aria-hidden="true"
+          class="absolute -left-5 -top-5 h-24 w-24 rounded-[18px] bg-brand-mint sm:-left-7 sm:-top-7 sm:h-28 sm:w-28"
+        >
+        </div>
+        <Image
+          src={portrait}
+          alt="Psicóloga Lauren Nunes"
+          format="webp"
+          quality={80}
+          widths={[480, 720, 960]}
+          sizes="(min-width: 1024px) 480px, 90vw"
+          loading="eager"
+          fetchpriority="high"
+          class="relative block aspect-[4/5] w-full rounded-[24px] object-cover object-[50%_30%]"
+        />
+      </figure>
+    </div>
+  </section>
+
+  <!-- Formação e trajetória -->
+  <section class="border-t border-brand-line px-6 py-20 md:px-11">
+    <div
+      class="mx-auto grid max-w-content grid-cols-1 gap-14 lg:grid-cols-2 lg:gap-20"
+    >
+      <div>
+        <h2 class={sectionTitle}>Formação</h2>
+        <ul class="mt-8 flex flex-col gap-4">
+          {
+            education.map((item) => (
+              <li class="rounded-[18px] border border-brand-border p-6">
+                <p class="font-heading text-lg font-semibold leading-snug text-brand-dark">
+                  {item.title}
+                </p>
+                <p class="mt-1.5 text-[15px] text-brand-muted">{item.place}</p>
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+
+      <div>
+        <h2 class={sectionTitle}>Trajetória</h2>
+        <ol class="relative mt-8 border-l-2 border-brand-mint pl-8">
+          {
+            timeline.map((item, i) => (
+              <li class:list={["relative", i < timeline.length - 1 && "pb-10"]}>
+                <span
+                  aria-hidden="true"
+                  class:list={[
+                    "absolute -left-[41px] top-1 h-4 w-4 rounded-full border-[3px] border-white",
+                    i === timeline.length - 1
+                      ? "bg-brand-primary"
+                      : "bg-brand-accent",
+                  ]}
+                />
+                <p class="text-sm font-semibold text-brand-eyebrow">
+                  {item.period}
+                </p>
+                <p class="mt-1 font-heading text-lg font-semibold leading-snug text-brand-dark">
+                  {item.title}
+                </p>
+                <p class="mt-1 text-[15px] text-brand-muted">{item.place}</p>
+              </li>
+            ))
+          }
+        </ol>
+      </div>
+    </div>
+  </section>
+
+  <!-- Abordagens -->
+  <section class="bg-brand-light px-6 py-20 md:px-11">
+    <div class="mx-auto max-w-content">
+      <h2 class={sectionTitle}>Abordagens</h2>
+      <p class="mt-4 max-w-[60ch] text-[17px] leading-relaxed text-brand-body">
+        A prática clínica é fundamentada na Análise do Comportamento.{" "}
+        <a
+          href="/#abordagem"
+          class="font-semibold text-brand-primary underline-offset-4 hover:text-brand-primary-hover hover:underline"
+        >
+          Veja como isso aparece na terapia
+        </a>.
+      </p>
+      <ul class="mt-10 grid grid-cols-1 gap-5 md:grid-cols-2">
+        {
+          approaches.map((a) => (
+            <li class:list={["rounded-[22px] p-8 sm:p-10", a.fill]}>
+              <p class="font-heading text-5xl font-bold tracking-tight text-brand-dark sm:text-6xl">
+                {a.short}
+              </p>
+              <p class="mt-4 max-w-[26ch] text-lg font-medium leading-snug text-brand-subtle">
+                {a.name}
+              </p>
+            </li>
+          ))
+        }
+      </ul>
+    </div>
+  </section>
+
+  <!-- Atendimento internacional + CTA -->
+  <section class="bg-brand-dark px-6 py-20 text-brand-on-dark md:px-11">
+    <div
+      class="mx-auto grid max-w-content grid-cols-1 items-end gap-12 lg:grid-cols-[1.3fr_1fr]"
+    >
+      <div>
+        <h2
+          class="font-heading text-[32px] font-bold leading-[1.15] tracking-tight text-white sm:text-[38px]"
+        >
+          Atendimento internacional
+        </h2>
+        <p class="mt-4 max-w-[48ch] text-[17px] leading-relaxed text-brand-on-dark">
+          Já atendeu clientes residentes em países como:
+        </p>
+        <ul class="mt-8 flex flex-wrap gap-3">
+          {
+            countries.map((country) => (
+              <li class="rounded-full border border-brand-on-dark-accent/30 bg-white/[0.07] px-6 py-3 font-heading text-xl font-semibold text-brand-on-dark-bright sm:text-2xl">
+                {country}
+              </li>
+            ))
+          }
+        </ul>
+      </div>
+      <div class="lg:justify-self-end lg:text-right">
+        <p class="mb-6 max-w-[34ch] text-[17px] leading-relaxed text-brand-on-dark-bright lg:ml-auto">
+          Sessões em português, com horário ajustado ao seu fuso.
+        </p>
+        <WhatsAppButton variant="inverted">Agendar um bate-papo</WhatsAppButton>
+      </div>
+    </div>
+  </section>
+</BaseLayout>
